@@ -289,7 +289,7 @@ namespace xsimd
      template <>
     inline batch<float, 16> nearbyint(const batch<float, 16>& x)
     {
-        return _mm512_roundscale_ps(x, 3);
+        return _mm512_roundscale_ps(x, 0);
     }
 
 #endif
