@@ -266,6 +266,34 @@ namespace xsimd
 
 #endif
 
+#if XSIMD_X86_INSTR_SET >= XSIMD_X86_AVX512F_VERSION
+
+    template <>
+    inline batch<float, 16> ceil(const batch<float, 16>& x)
+    {
+        return _mm512_roundscale_ps(x, 2);
+    }
+
+    template <>
+    inline batch<float, 16> floor(const batch<float, 16>& x)
+    {
+        return _mm512_roundscale_ps(x, 1);
+    }
+
+    template <>
+    inline batch<float, 16> trunc(const batch<float, 16>& x)
+    {
+        return _mm512_roundscale_ps(x, 3);
+    }
+
+     template <>
+    inline batch<float, 16> nearbyint(const batch<float, 16>& x)
+    {
+        return _mm512_roundscale_ps(x, 3);
+    }
+
+#endif
+
 #if XSIMD_ARM_INSTR_SET >= XSIMD_ARM8_32_NEON_VERSION
     template <>
     inline batch<float, 4> ceil(const batch<float, 4>& x)
